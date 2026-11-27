@@ -1,4 +1,4 @@
-# YMM4 マネージャー
+﻿# YMM4 マネージャー
 
 ゆっくりMovieMaker4(YMM4)を外から管理する Windows ソフトです(プラグインではありません)。
 
@@ -27,3 +27,10 @@ Inno Setup が無い時も、`bin\publish\YMM4Manager.exe` はそのまま使え
 - `Shared\` … YmmExplorer プラグインと共通のコード(素材データベース・プラグイン管理)。
   プラグイン側を直した時は、同じファイルをここへコピーしてください。
 - 設定: `%AppData%\YMM4Manager\settings.json`
+
+## 利用規約
+
+[利用規約.txt](利用規約.txt) をお読みください。
+
+- 作者　: そだねー
+- 連絡先: https://x.com/JA7n5XIM8L29006 (DM へ)

@@ -39,5 +39,5 @@ if errorlevel 1 (
 )
 echo.
 echo できました: bin\installer の中の YMM4Manager_Setup_（バージョン）.exe
-explorer bin\installer
+explorer ..\..\インストーラー
 pause

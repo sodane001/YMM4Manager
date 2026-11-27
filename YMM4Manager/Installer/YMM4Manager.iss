@@ -22,7 +22,8 @@ PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
-OutputDir=..\bin\installer
+; できたインストーラーは D:\自作ソフト\YmmManager\インストーラー にまとめる(版のフォルダー\YMM4Manager\Installer から3つ上)
+OutputDir=..\..\..\インストーラー
 OutputBaseFilename=YMM4Manager_Setup_{#AppVersion}
 Compression=lzma2/ultra64
 SolidCompression=yes
@@ -39,6 +40,8 @@ CloseApplications=force
 RestartApplications=no
 VersionInfoVersion={#AppVersion}
 SetupIconFile=..\Assets\app.ico
+; インストールの時に利用規約を見せて、同意してもらう
+LicenseFile=..\利用規約.txt
 
 [Languages]
 Name: "japanese"; MessagesFile: "compiler:Languages\Japanese.isl"
@@ -48,10 +51,12 @@ Name: "desktopicon"; Description: "デスクトップにショートカットを
 
 [Files]
 Source: "{#PublishDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\利用規約.txt"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
 Name: "{autoprograms}\{#AppName}"; Filename: "{app}\{#AppExe}"
 Name: "{autodesktop}\{#AppName}"; Filename: "{app}\{#AppExe}"; Tasks: desktopicon
+Name: "{autoprograms}\{#AppName} 利用規約"; Filename: "{app}\利用規約.txt"
 
 [Messages]
 japanese.WelcomeLabel2=[name/ver] をインストールします。%n%n以前のバージョンが入っている場合は、設定や登録内容はそのままで、新しいバージョンに上書きされます。
