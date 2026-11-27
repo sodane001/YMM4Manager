@@ -20,6 +20,10 @@ public sealed class AppSettings
     /// <summary>バックアップの保存先(空なら、ドキュメント\YMM4Manager バックアップ)</summary>
     public string? BackupDir { get; set; }
     public bool LaunchMinimize { get; set; }
+    /// <summary>通知領域(タスクバーの右下)にアイコンを出す</summary>
+    public bool TrayIcon { get; set; } = true;
+    /// <summary>× で閉じた時は終わらずに、通知領域に残す(定期バックアップを続ける)</summary>
+    public bool CloseToTray { get; set; } = true;
     public string LastPage { get; set; } = "home";
     public double WindowWidth { get; set; } = 1280;
     public double WindowHeight { get; set; } = 800;

@@ -8,12 +8,14 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
     <UseWPF>true</UseWPF>
+    <!-- 通知領域のアイコン(NotifyIcon)だけに使う。WPF の型と名前がぶつからないよう、using は自動で入れない -->
+    <UseWindowsForms>true</UseWindowsForms>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>YMM4Manager</AssemblyName>
     <RootNamespace>YMM4Manager</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Version>1.16.2</Version>
+    <Version>1.17.0</Version>
     <ApplicationIcon>Assets\app.ico</ApplicationIcon>
     <Product>YMM4 マネージャー</Product>
     <Description>ゆっくりMovieMaker4 の総合管理ソフト</Description>
@@ -26,6 +28,11 @@
     <!-- 共通コード(PluginManager)の Assembly.Location は、このソフトでは使わない(フォルダーは RootOverride で渡す)ので、警告を出さない -->
     <NoWarn>$(NoWarn);IL3000</NoWarn>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Using Remove="System.Windows.Forms" />
+    <Using Remove="System.Drawing" />
+  </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Assets\app.ico" />

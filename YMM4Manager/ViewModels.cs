@@ -1,4 +1,4 @@
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
@@ -59,6 +59,15 @@ public sealed class MainVm : NotifyBase
     public Ymm4UpdaterVm Updater { get; }
     public PluginSettingsVm PluginSettings { get; }
     public StorageVm Storage { get; }
+
+    /// <summary>通知領域(タスクバーの右下)にアイコンを出す</summary>
+    public bool TrayIcon
+    {
+        get => settings.TrayIcon;
+        set { settings.TrayIcon = value; settings.Save(); Raise(nameof(TrayIcon)); (System.Windows.Application.Current.MainWindow as MainWindow)?.ApplyTray(); }
+    }
+    /// <summary>× で閉じた時は、通知領域に残す</summary>
+    public bool CloseToTray { get => settings.CloseToTray; set { settings.CloseToTray = value; settings.Save(); Raise(nameof(CloseToTray)); } }
     public Ymm4PresetsVm Presets { get; }
     public AiChatVm Ai { get; }
     public Ymm4TemplatesVm Ymm4Templates { get; }

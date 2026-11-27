@@ -11,6 +11,20 @@ public partial class MainWindow : Window
 {
     readonly MainVm vm = new();
 
+    readonly TrayIcon tray;
+    bool exiting;
+
+    /// <summary>本当に終わる(通知領域のメニューの「終了」)</summary>
+    public void ExitApp()
+    {
+        exiting = true;
+        Close();
+        Application.Current.Shutdown();
+    }
+
+    /// <summary>設定を変えた時に、通知領域のアイコンを出す・消す</summary>
+    public void ApplyTray() => tray.Visible = AppSettings.Instance.TrayIcon;
+
     public MainWindow()
     {
         InitializeComponent();
@@ -20,11 +34,20 @@ public partial class MainWindow : Window
         Height = Math.Max(MinHeight, st.WindowHeight);
         // ほかで設定が変わっていたら(タスクスケジューラーのバックアップなど)、前に出た時に読み直す
         Activated += (_, _) => { if (st.ReloadFromDisk()) try { vm.Storage.SettingsReloaded(); } catch { } };
-        Closing += (_, _) =>
+        tray = new TrayIcon(this, vm) { Visible = st.TrayIcon };
+        Closing += (_, e) =>
         {
             if (WindowState == WindowState.Normal) { st.WindowWidth = Width; st.WindowHeight = Height; }
             st.Save();
+            // × で閉じた時は、通知領域に残す(右クリックの「終了」で本当に終わる)
+            if (!exiting && st.TrayIcon && st.CloseToTray)
+            {
+                e.Cancel = true;
+                Hide();
+                tray.ShowHiddenTip();
+            }
         };
+        Closed += (_, _) => tray.Dispose();
         vm.Materials.RestoreSelection = list =>
         {
             restoring = true;

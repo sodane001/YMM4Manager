@@ -1,4 +1,4 @@
-<Window x:Class="YMM4Manager.MainWindow"
+﻿<Window x:Class="YMM4Manager.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:YMM4Manager"
@@ -1383,6 +1383,16 @@
                             <TextBlock Text="バックアップの保存先" FontWeight="SemiBold" Margin="0,0,0,6"/>
                             <TextBlock Text="{Binding Backups.BackupRoot}" Style="{StaticResource SubText}" Margin="0,0,0,10"/>
                             <Button Style="{StaticResource Btn}" Content="変更する" HorizontalAlignment="Left" Click="PickBackupDir_Click"/>
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource CardBox}">
+                        <StackPanel>
+                            <TextBlock Text="通知領域(タスクバーの右下)" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                            <CheckBox Style="{StaticResource Check}" Content="通知領域にアイコンを出す(押すと開きます。右クリックで YMM4 の起動・今すぐバックアップ・終了)" IsChecked="{Binding TrayIcon}" Margin="0,0,0,4"/>
+                            <CheckBox Style="{StaticResource Check}" Content="× で閉じた時は終わらずに、通知領域に残す(定期バックアップを続けます)" IsChecked="{Binding CloseToTray}"
+                                      IsEnabled="{Binding TrayIcon}" Margin="0,0,0,4"/>
+                            <TextBlock Style="{StaticResource SubText}" TextWrapping="Wrap"
+                                       Text="アイコンが「隠れているインジケーター」(∧ の中)に入った時は、タスクバーへドラッグすると、いつも見える所に出せます。"/>
                         </StackPanel>
                     </Border>
                     <Border Style="{StaticResource CardBox}">
