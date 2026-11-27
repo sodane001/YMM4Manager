@@ -3,7 +3,7 @@ setlocal
 cd /d "%~dp0"
 
 echo === YMM4 マネージャー: exe を作っています（.NET 10 SDK が必要です） ===
-dotnet publish YMM4Manager.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o bin\publish
+dotnet publish YMM4Manager.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:ContinuousIntegrationBuild=true "-p:PathMap=%CD%=/_/YMM4Manager" -o bin\publish
 if errorlevel 1 (
   echo.
   echo [エラー] exe を作れませんでした。上のメッセージを確認してください。
