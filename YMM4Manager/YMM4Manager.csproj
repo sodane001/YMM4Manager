@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    YMM4 マネージャー: ゆっくりMovieMaker4 を外から管理する Windows ソフト。
+    YmmExplorer プラグインと、素材データベース・プラグインの有効/無効の仕組みを共有しています(Shared フォルダー)。
+  -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows10.0.19041.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>YMM4Manager</AssemblyName>
+    <RootNamespace>YMM4Manager</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Version>1.16.2</Version>
+    <ApplicationIcon>Assets\app.ico</ApplicationIcon>
+    <Product>YMM4 マネージャー</Product>
+    <Description>ゆっくりMovieMaker4 の総合管理ソフト</Description>
+    <Company>YMM4 Manager</Company>
+    <!-- インストーラー用: 1つの exe にまとめる(.NET を入れていない PC でも動く) -->
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <!-- 共通コード(PluginManager)の Assembly.Location は、このソフトでは使わない(フォルダーは RootOverride で渡す)ので、警告を出さない -->
+    <NoWarn>$(NoWarn);IL3000</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\app.ico" />
+  </ItemGroup>
+
+</Project>
